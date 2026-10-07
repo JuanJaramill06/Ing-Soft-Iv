@@ -58,3 +58,11 @@ gradle-app.setting
 
 # Generated binaries
 **/bin/
+
+# Generated IDE
+.vscode/
+.idea/
+*.iml
+
+# Keep shadow JAR only
+!**/clientes/build/libs/clientes-all.jar

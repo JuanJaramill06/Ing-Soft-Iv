@@ -53,6 +53,7 @@ module apexstore {
     interface ServicioCheckout {
         string gestionarComprasHttp(SolicitudCompra solicitud) throws ErrorPago;  // devuelve idTransaccion
         EstadoPago solicitarEstadoPago(string idTransaccion);
+        void actualizarEstadoPago(string idTransaccion, EstadoPago estado, string idExterno, string motivo);
     };
 
     // Nodo 3: la implementan las tres estrategias (una instancia por medio de pago)

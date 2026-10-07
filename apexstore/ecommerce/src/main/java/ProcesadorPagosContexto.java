@@ -8,21 +8,12 @@ public class ProcesadorPagosContexto {
         this.estrategias = estrategias;
     }
 
-    public void iniciarPagoOrden(SolicitudPago solicitudPago, String medioPago) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    EstrategiaPagoPrx estrategia = estrategias.get(medioPago);
-                    if (estrategia == null) {
-                        return;
-                    }
-
-                    estrategia.procesarPago(solicitudPago);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+    public void procesarConEstrategia(SolicitudPago solicitud, String medioPago) {
+        EstrategiaPagoPrx estrategia = estrategias.get(medioPago);
+        if (estrategia != null) {
+            try {
+                estrategia.procesarPago(solicitud);
+            } catch (Exception e) {}
+        }
     }
 }
