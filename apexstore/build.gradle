@@ -1,0 +1,11 @@
+subprojects {
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation 'com.zeroc:ice:3.7.6'
+    }
+}

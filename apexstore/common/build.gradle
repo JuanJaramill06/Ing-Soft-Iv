@@ -1,0 +1,12 @@
+plugins {
+    id 'com.zeroc.gradle.ice-builder.slice' version '1.5.0' apply false
+}
+
+apply plugin: 'com.zeroc.gradle.ice-builder.slice'
+
+slice {
+   iceHome = '/opt/homebrew'
+   java {
+        files = fileTree(dir: 'src/main/slice', include: '**/*.ice')
+   }
+}
