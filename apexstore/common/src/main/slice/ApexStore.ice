@@ -34,7 +34,6 @@ module apexstore {
         string motivo;
     };
 
-    // Registro que se guarda en la BD
     struct Transaccion {
         string idTransaccion;
         double monto;
@@ -49,24 +48,20 @@ module apexstore {
         string motivo;
     };
 
-    // Nodo 2: lo consumen WebApp y MobileApp
     interface ServicioCheckout {
-        string gestionarComprasHttp(SolicitudCompra solicitud) throws ErrorPago;  // devuelve idTransaccion
+        string gestionarComprasHttp(SolicitudCompra solicitud) throws ErrorPago; 
         EstadoPago solicitarEstadoPago(string idTransaccion);
         void actualizarEstadoPago(string idTransaccion, EstadoPago estado, string idExterno, string motivo);
     };
 
-    // Nodo 3: la implementan las tres estrategias (una instancia por medio de pago)
     interface EstrategiaPago {
         AcuseCobro procesarPago(SolicitudPago solicitud);
     };
 
-    // Nodo 2: la llama ControladorNotificacion (Nodo 3)
     interface ServicioRegistroTransacciones {
         void registrarResultado(ResultadoPago resultado);
     };
 
-    // Nodo 4: la llama solo ServicioRegistroTransacciones
     interface RepositorioTransacciones {
         void persistirTransaccion(Transaccion transaccion);
     };
